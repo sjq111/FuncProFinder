@@ -1,0 +1,17 @@
+function [sample,d,rem]=sampling(positive,negative)
+[~,m]=size(positive);
+[~,n]=size(negative);
+r=0.9;
+k1=round(r*m);
+k2=round(r*n);
+u=randperm(m);
+v=randperm(n);
+m1=u(1:k1);
+n1=v(1:k2);
+po=positive(:,m1);
+ne=negative(:,n1);
+sample=[po ne];
+rempo=u(k1+1:m);
+remne=v(k2+1:n)+m;
+rem=[rempo remne];
+d=[ones(k1,1);-ones(k2,1)];
